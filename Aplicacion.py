@@ -33,10 +33,19 @@ while True:
         print("Producto registrado con éxito.")
 
     elif opcion == "2":
-        print("Operacion no implementada")
+        id_producto = input("Ingrese el ID del producto que desea eliminar: ")
+        cursor.execute("DELETE FROM producto WHERE idproducto=?", (id_producto,))
+        conexion.commit()
+        print("Producto eliminado con éxito.")
 
     elif opcion == "3":
-        print("Operacion no implementada")
+        id_producto = input("Ingrese el ID del producto que desea editar: ")
+        nuevo_nombre = input("Ingrese el nuevo nombre del producto: ")
+        nuevo_precio = input("Ingrese el nuevo precio del producto: ")
+
+        cursor.execute("UPDATE producto SET nombre=?, precio=? WHERE idproducto=?", (nuevo_nombre, nuevo_precio, id_producto))
+        conexion.commit()
+        print("Producto editado con éxito.")
 
     elif opcion == "4":
         cursor.execute("SELECT * FROM producto")
